@@ -49,7 +49,7 @@ function informaid_references_theme() {
 function informaid_references_view_slider_societes(Node $node) {
   $i = 0;
   $references = $node->field_references;
-  $entityManager = \Drupal::entityManager();
+  $entityTypeManager = \Drupal::entityTypeManager();
   $societes = [];
   $clients_id = [];
   foreach ($references as $reference) {
@@ -57,8 +57,8 @@ function informaid_references_view_slider_societes(Node $node) {
     if ($entity) {
       $societeClient = $entity->field_client[0]->entity;
       $societeClientFinal = $entity->field_client_final[0]->entity;
-      $client_view_builder = $entityManager->getViewBuilder($societeClient->getEntityTypeId());
-      $clientFinal_view_builder = $entityManager->getViewBuilder($societeClientFinal->getEntityTypeId());
+      $client_view_builder = $entityTypeManager->getViewBuilder($societeClient->getEntityTypeId());
+      $clientFinal_view_builder = $entityTypeManager->getViewBuilder($societeClientFinal->getEntityTypeId());
 
       if ($societeClient && $societeClient->id() && !in_array($societeClient->id(), $clients_id)) {
         $i++;
