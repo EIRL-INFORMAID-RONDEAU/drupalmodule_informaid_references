@@ -1,0 +1,13 @@
+{
+    "name": "informaid/informaid_references",
+    "description": "Template for slider of Informaid references.",
+    "type": "drupal-custom-module",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "FabRondeau",
+            "email": "fabienne.rondeau@informaid.fr"
+        }
+    ],
+    "minimum-stability": "stable"
+}
