@@ -9,5 +9,18 @@
             "email": "fabienne.rondeau@informaid.fr"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "homepage": "https://github.com/FabRondeau/drupalmodule_informaid_references",
+    "support": {
+        "issues": "https://github.com/FabRondeau/drupalmodule_informaid_references/issues",
+        "source": "https://github.com/FabRondeau/drupalmodule_informaid_references.git"
+    },
+    "require": {
+        "drupal/core": "^8.8 || ^9"
+    },
+    "extra": {
+        "branch-alias": {
+        "dev-8.x-1.x": "1.x-dev"
+        }
+    }
 }
