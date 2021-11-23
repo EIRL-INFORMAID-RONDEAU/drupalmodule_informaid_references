@@ -1,0 +1,79 @@
+<?php
+
+/**
+ * @file
+ * Contains informaid_references.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_help().
+ */
+function informaid_references_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the informaid_references module.
+    case 'help.page.informaid_references':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Références Informaid') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function informaid_references_theme() {
+  return [
+    'informaid_logos_clients' => [
+      'variables' => [
+        'societes' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * View slider Sicietes.
+ *
+ * @param \Drupal\node\Entity\Node $node
+ *   Param Node.
+ *
+ * @return array
+ *   Return renderable array.
+ */
+function informaid_references_view_slider_societes(Node $node) {
+  $i = 0;
+  $references = $node->field_references;
+  $entityManager = \Drupal::entityManager();
+  $societes = [];
+  $clients_id = [];
+  foreach ($references as $reference) {
+    $entity = $reference->entity;
+    if ($entity) {
+      $societeClient = $entity->field_client[0]->entity;
+      $societeClientFinal = $entity->field_client_final[0]->entity;
+      $client_view_builder = $entityManager->getViewBuilder($societeClient->getEntityTypeId());
+      $clientFinal_view_builder = $entityManager->getViewBuilder($societeClientFinal->getEntityTypeId());
+
+      if ($societeClient && $societeClient->id() && !in_array($societeClient->id(), $clients_id)) {
+        $i++;
+        $clients_id[] = $societeClient->id();
+        $societes[$i] = $client_view_builder->view($societeClient, 'teaser');
+      }
+      if ($societeClientFinal && $societeClientFinal->id() && !in_array($societeClientFinal->id(), $clients_id)) {
+        $i++;
+        $clients_id[] = $societeClientFinal->id();
+        $societes[$i] = $clientFinal_view_builder->view($societeClientFinal, 'teaser');
+      }
+    }
+  }
+  return [
+    '#theme' => 'informaid_logos_clients',
+    '#societes' => $societes,
+  ];
+}

@@ -1,0 +1,23 @@
+<!-- Add you custom twig html here -->
+<section class="partenaires paddingt-100 paddingb-50 col-xs-12 bg-color-degrade" id="partenaires">
+  <div class="col-md-12 section-heade text-center">
+    <h1 class="section-title">{{ 'Partners'|trans }}</h1>
+    <div class="space-25"></div>
+  </div>
+  <div id="slider-partenaires" class="swiper-container">
+    <div id="partners-slider-label" class="hidden" aria-label="Logos des partenaires INFORMAID">Logos des partenaires INFORMAID</div>
+    <div class="swiper-wrapper d-flex flex-row marginb-50" role="slider" 
+    aria-labelledby="partners-slider-label"
+    aria-valuemin="1"
+    aria-valuemax="{{ societes|length }}">
+    {% for societe in societes %}
+      <div class="swiper-slide swiper-slide--swipe references is-promoted logo-client d-flex flex-row swiper-slide-active">
+        <div class="inline-wrapper grayscale"> 
+          {{ societe }}
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>

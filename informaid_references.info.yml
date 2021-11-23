@@ -1,0 +1,5 @@
+name: 'informaid_references'
+type: module
+description: 'Références Informaid'
+core: 8.x
+package: 'Informaid'
